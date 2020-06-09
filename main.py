@@ -82,9 +82,9 @@ while True:
         s.ehlo()
         s.starttls()
         s.ehlo()
-        s.login('aaryadev257@gmail.com', 'aurora1127')
+        s.login('', '')  # sender email and password respectively
 
-        to_email, from_email = 'aarya257@gmail.com', 'aaryadev257@gmail.com'
+        to_email, from_email = '', ''  # receiver and sender email ids respectively
         msg['Subject'] = 'subject'
         msg['From'] = from_email
         body = 'This is your daily Covid - 19 update! Click on the attachment to view'
