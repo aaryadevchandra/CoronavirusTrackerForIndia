@@ -6,6 +6,7 @@ from email.mime.multipart import MIMEMultipart
 import time
 import smtplib
 from email.mime.text import MIMEText
+import os
 
 while True:
 
@@ -16,7 +17,7 @@ while True:
 
         driver.get("https://www.worldometers.info/coronavirus/")
 
-        driver.implicitly_wait(10)
+        driver.implicitly_wait(15)
 
         return driver
 
@@ -43,7 +44,7 @@ while True:
         india_recovered = driver.find_element_by_xpath('/html/body/div[3]/div[3]/div/div[4]/div[1]/div/table/tbody[1]/tr[11]/td[7]')
         print("India total recovered:", india_recovered.text)
 
-        return total_cases, total_death, total_recovered, india_cases, india_deaths, india_recovered
+        return total_cases, total_death, total_recovered, india_cases, india_deaths, india_recovered, driver
 
 
     def store_in_file():
@@ -71,10 +72,12 @@ while True:
         file.write(ret_grab[5].text)
         file.close()
 
+        return ret_grab[6]
+
 
     def send_message():
 
-        store_in_file()
+        driver = store_in_file()
 
         msg = MIMEMultipart('alternative')
         s = smtplib.SMTP('smtp.gmail.com', 587)
@@ -82,9 +85,9 @@ while True:
         s.ehlo()
         s.starttls()
         s.ehlo()
-        s.login('', '')  # sender email and password respectively
+        s.login('aaryadev257@gmail.com', 'aurora1127')
 
-        to_email, from_email = '', ''  # receiver and sender email ids respectively
+        to_email, from_email = 'aarya257@gmail.com', 'aaryadev257@gmail.com'
         msg['Subject'] = 'subject'
         msg['From'] = from_email
         body = 'This is your daily Covid - 19 update! Click on the attachment to view'
@@ -99,13 +102,24 @@ while True:
         msg.attach(content)
         s.sendmail(from_email, to_email, msg.as_string())
 
+        return driver
+
 
     def destroy():
-        driver = init()
+        driver = send_message()
         driver.quit()
 
 
-    send_message()
+    def delete_file():
+        file_name = 'covid.txt'
+
+        location = "C:/Users/Swati/PycharmProjects/CoronavirusTrackerForIndia"
+
+        path = os.path.join(location, file_name)
+
+        os.remove(path)
+
     destroy()
+    delete_file()
 
     time.sleep(60 * 60 * 24) # CHANGE THIS VALUE (IN SECONDS) IN THE BRACKET TO SET HOW FREQUENTLY YOU WANT THE PROGRAM TO UPDATE YOU
