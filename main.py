@@ -11,7 +11,7 @@ import os
 while True:
 
     def init():
-        path = "C:/Users/Swati/PycharmProjects/Practice/chromedriver.exe"
+        path = "" #path of directory in which chromedriver.exe is located
 
         driver = selenium.webdriver.Chrome(path)
 
@@ -113,7 +113,7 @@ while True:
     def delete_file():
         file_name = 'covid.txt'
 
-        location = "C:/Users/Swati/PycharmProjects/CoronavirusTrackerForIndia"
+        location = "" #location of file to delete
 
         path = os.path.join(location, file_name)
 
