@@ -35,13 +35,13 @@ while True:
         total_recovered = driver.find_element_by_xpath('/html/body/div[3]/div[2]/div[1]/div/div[7]/div/span')
         print("Total recovered:", total_recovered.text)
 
-        india_cases = driver.find_element_by_xpath('/html/body/div[3]/div[3]/div/div[4]/div[1]/div/table/tbody[1]/tr[11]/td[3]')
+        india_cases = driver.find_element_by_xpath('/html/body/div[3]/div[3]/div/div[6]/div[1]/div/table/tbody[1]/tr[7]/td[3]')
         print("India total cases:", india_cases.text)
 
-        india_deaths = driver.find_element_by_xpath('/html/body/div[3]/div[3]/div/div[4]/div[1]/div/table/tbody[1]/tr[11]/td[5]')
+        india_deaths = driver.find_element_by_xpath('/html/body/div[3]/div[3]/div/div[6]/div[1]/div/table/tbody[1]/tr[7]/td[5]')
         print("India total deaths:", india_deaths.text)
 
-        india_recovered = driver.find_element_by_xpath('/html/body/div[3]/div[3]/div/div[4]/div[1]/div/table/tbody[1]/tr[11]/td[7]')
+        india_recovered = driver.find_element_by_xpath('/html/body/div[3]/div[3]/div/div[6]/div[1]/div/table/tbody[1]/tr[7]/td[7]')
         print("India total recovered:", india_recovered.text)
 
         return total_cases, total_death, total_recovered, india_cases, india_deaths, india_recovered, driver
@@ -85,9 +85,9 @@ while True:
         s.ehlo()
         s.starttls()
         s.ehlo()
-        s.login('aaryadev257@gmail.com', 'aurora1127')
+        s.login('sampleprogrammingemail@gmail.com', 's4mpl3progr4mming3mail') # a sample email account I made for this program
 
-        to_email, from_email = 'aarya257@gmail.com', 'aaryadev257@gmail.com'
+        to_email, from_email = '', 'sampleprogrammingemail@gmail.com' # add the receiving email in the first empty single quotes
         msg['Subject'] = 'subject'
         msg['From'] = from_email
         body = 'This is your daily Covid - 19 update! Click on the attachment to view'
@@ -113,7 +113,7 @@ while True:
     def delete_file():
         file_name = 'covid.txt'
 
-        location = "" #location of file to delete
+        location = "" # location of file to delete. currently the txt file is in the same directory, so the current config i.e. "" should automatically delete the file 
 
         path = os.path.join(location, file_name)
 
